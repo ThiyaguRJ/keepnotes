@@ -4,24 +4,31 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(
   req: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: { id: string } }
 ) {
   await ConnectDB();
+
   const { title, content } = await req.json();
+  const { id } = await params;
+
   const updated = await Notes.findByIdAndUpdate(
-    context.params.id,
+    id,
     { title, content },
     { new: true }
   );
+
   return NextResponse.json(updated);
 }
 
-
 export async function DELETE(
   req: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: { id: string } }
 ) {
   await ConnectDB();
-  await Notes.findByIdAndDelete(context.params.id);
+
+  const { id } = await params;
+
+  await Notes.findByIdAndDelete(id);
+
   return NextResponse.json({ message: "Note deleted" });
 }
