@@ -3,13 +3,13 @@ import { ConnectDB } from "@/lib/mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(
-  req: NextRequest,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: { params: { id: string } }
 ) {
   await ConnectDB();
 
-  const { title, content } = await req.json();
-  const { id } = await params;
+  const { title, content } = await request.json();
+  const { id } = context.params;
 
   const updated = await Notes.findByIdAndUpdate(
     id,
@@ -21,12 +21,12 @@ export async function PUT(
 }
 
 export async function DELETE(
-  req: NextRequest,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: { params: { id: string } }
 ) {
   await ConnectDB();
 
-  const { id } = await params;
+  const { id } = context.params;
 
   await Notes.findByIdAndDelete(id);
 
