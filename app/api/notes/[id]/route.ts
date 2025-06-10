@@ -10,7 +10,8 @@ export async function PUT(
     await ConnectDB();
 
     const { title, content } = await request.json();
-    const { id } = params;
+    
+    const { id } = await params;
 
     const updated = await Notes.findByIdAndUpdate(
       id,
@@ -32,7 +33,7 @@ export async function DELETE(
   try {
     await ConnectDB();
 
-    const { id } = params;
+    const { id } =await params;
 
     await Notes.findByIdAndDelete(id);
 
