@@ -2,14 +2,17 @@ import { Notes } from "@/model/notes";
 import { ConnectDB } from "@/lib/mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PUT(
-  request: NextRequest,
-  context: { params: { id: string } }
-) {
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+export async function PUT(request: NextRequest, { params }: Props) {
   await ConnectDB();
 
   const { title, content } = await request.json();
-  const { id } = context.params;
+  const { id } = params;
 
   const updated = await Notes.findByIdAndUpdate(
     id,
@@ -20,13 +23,10 @@ export async function PUT(
   return NextResponse.json(updated);
 }
 
-export async function DELETE(
-  request: NextRequest,
-  context: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest, { params }: Props) {
   await ConnectDB();
 
-  const { id } = context.params;
+  const { id } = params;
 
   await Notes.findByIdAndDelete(id);
 
