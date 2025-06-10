@@ -19,7 +19,7 @@ const Header = ({
             </a>
           </li>
           <li>
-            <a href="/notes" className="text-gray-800 font-bold hover:text-white">
+            <a href="/keepnotes" className="text-gray-800 font-bold hover:text-white">
               Notes
             </a>
           </li>

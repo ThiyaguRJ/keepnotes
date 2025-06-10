@@ -32,7 +32,7 @@ const LoginForm = ({
       if (response.ok) {
         setMessage("Login successful!");
         localStorage.setItem("token", data.token);
-        router.push("/notes");
+        router.push("/keepnotes");
       } else {
         setMessage(data.message || "Login failed.");
       }

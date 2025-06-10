@@ -187,7 +187,7 @@ export default function HomePage() {
                 <button
                   type="submit"
                   className="bg-green-500 cursor-pointer bg-gradient-to-br from-green-400 to-green-500 text-white font-bold py-2 px-4 rounded border border-gray-300">
-                  {selectedNote ? "Save" : "Add"}
+                  {selectedNote ? "Update" : "Add"}
                 </button>
                 {!selectedNote && (
                   <button
